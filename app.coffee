@@ -6,6 +6,7 @@ require('./app/middleware')(app)
 
 router = require './app/router.coffee'
 app.use router.routes()
+   .use router.allowedMethods()
 
 app.listen 3000, (err)->
   console.log "server start #{err or 'success'}"

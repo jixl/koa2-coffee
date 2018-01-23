@@ -1,6 +1,8 @@
 'use strict'
 
+const ErrorHandler = require('./error.js');
 module.exports = app => {
+  app.use(ErrorHandler)
   // x-response-time
   app.use(async (ctx, next) => {
     const start = Date.now();
