@@ -18,6 +18,15 @@ myutil.isArray = (v)-> 'Array' is R.type v
 myutil.isRegExp = (v)-> 'RegExp' is R.type v
 myutil.isFunction = (v)-> 'Function' is R.type v
 
+_isObject = (x) -> Object::toString.call(x) is '[object Object]'
+###
+  @description 检查判断是否空
+  @param {*} v 需要检查的对象
+  @return {Boolean} 空 true 0 | '' | null | undefined | [] | {}, 非空 false
+###
+myutil.isEmpty = (v) ->
+  !v or (Array.isArray(v) and v.length is 0) or (_isObject(v) and Object.keys(v).length is 0)
+
 myutil.loadFiles = (self, path, fn)->
   _isntLoad = (filename)->
     pos = filename.lastIndexOf('.')

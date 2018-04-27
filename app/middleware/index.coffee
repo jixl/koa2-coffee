@@ -15,4 +15,4 @@ module.exports = (app) ->
     start = Date.now()
     await next()
     ms = Date.now() - start
-    console.log "#{ctx.method} #{ctx.url} - #{ms}"
+    app.logger.info "#{ctx.method} #{ctx.url} - #{ms}"

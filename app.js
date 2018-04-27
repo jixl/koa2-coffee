@@ -2,8 +2,14 @@
 require('coffeescript/register');
 // require('./app.coffee');
 
+const log4js = require('log4js');
+log4js.configure('./log4js.json');
+
 const koa = require('koa');
 const app = new koa();
+app.getLogger = log4js.getLogger;
+app.logger = log4js.getLogger('app');
+const access = log4js.getLogger('access');
 
 require('./app/middleware')(app);
 

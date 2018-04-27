@@ -18,10 +18,10 @@ dispatcher = (req)->
   if servicesTbl[key]
     controller.cls = servicesTbl[key]
   controller
- 
+
 servicesTbl =
   'user' : service.UserService
- 
+
 router.all '*', (ctx, next)->
   data = {}
   ctrl = dispatcher ctx.request
@@ -29,6 +29,6 @@ router.all '*', (ctx, next)->
     obj = new ctrl.cls(data, ctx, ctrl.op)
     obj.run()
   else
-    ctx.body {status: 1001, info: '接口访问调用异常，请联系管理员'}
+    ctx.body = {status: 1001, info: '接口访问调用异常，请联系管理员'}
 
 module.exports = router
