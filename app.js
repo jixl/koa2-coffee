@@ -17,6 +17,10 @@ const router = require('./app/router.coffee');
 app.use(router.routes())
    .use(router.allowedMethods());
 
+app.on('error', (err, ctx) => {
+  log.error('server error', err, ctx)
+});
+
 app.listen(3000, err => {
   console.log(`server start ${err || 'success'}`)
 });
